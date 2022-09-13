@@ -12,4 +12,9 @@ public class UserInfo {
 		  return "userNo = " + this.userNo + ", userNm = " + this.userNm +", userBirthDt = " + this.userBirthDt;
 		  
 	  }
+
+	public void setUserNo(Long userNo2) {
+		// TODO Auto-generated method stub
+		
+	}
 }
