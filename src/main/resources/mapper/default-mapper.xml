@@ -25,6 +25,4 @@
 		    date_format(#{userBirthDt},'%Y-%m-%d')
 		)
     </insert>
-
-  
 </mapper> 
