@@ -11,6 +11,7 @@
 <meta name="author" content="Hau Nguyen">
 <meta name="keywords" content="au theme template">
 
+
 <!-- Title Page-->
 <title>관리페이지</title>
 <script type="text/javascript">
@@ -18,7 +19,29 @@
 		alert(prdNo);
 	}
 	function btnSave(){
+		event.preventDefault();
 		alert("저장하시겠습니까?");
+		var form = $('#frmMenu')[0];
+		var data = new FormData(form);
+		
+		$.ajax({
+			url : '/admin/menu/add',
+			data : data,
+			method : 'post',
+			enctype : 'multipart/form-data',
+			contentType : false,
+			processData : false,
+			
+			success : function(data){
+				alert("성공");
+			},
+			error : function(data){
+				alert("에러");
+			},
+			complete : function(data){
+				console.log(data.responseText);
+			}
+		})
 	}
 </script>
 
@@ -189,8 +212,6 @@
 										<div class="col-12 col-md-9">
 											<label><input type="radio" name="menuDispYn" value='Y' checked>전시</label> 
 											<label><input type="radio" name="menuDispYn" value='N'>비전시</label>
-											<input type="checkbox" checked data-toggle="toggle"
-												data-size="lg">
 										</div>
 									</div>
 									<div class="row form-group">
