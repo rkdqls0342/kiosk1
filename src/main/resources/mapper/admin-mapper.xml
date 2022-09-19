@@ -6,12 +6,12 @@
 
 	<insert id="insertMenu" parameterType="edu.sungil.foods.web.domain.dto.MenuInfo">
 		INSERT INTO tb_menu( 
-		   	menu_nm,
-			menu_prc,
-			menu_desc,
-			menu_stock_qty,
-			disp_yn,
-			menu_img_nm)
+		   	MENU_NM,
+			MENU_PRICE,
+			MENU_DESC,
+			MENU_STOCK_QTY,
+			MENU_DISP_YN,
+			MENU_IMG_NM)
 			VALUES
 			(
 				#{menuNm},
@@ -25,4 +25,20 @@
 			
 	</insert>
    
+   <select id = "selectMenuList" resultType="edu.sungil.foods.web.domain.dto.MenuInfo" parameterType="edu.sungil.foods.web.domain.dto.SchMenuInfo">
+  	SELECT	MENU_NO,
+  			MENU_NM,
+			MENU_PRICE,
+			MENU_DESC,
+			MENU_STOCK_QTY,
+			MENU_DISP_YN
+	FROM TB_MENU
+	WHERE 1=1
+	<if test="menuNo != '' and menuNo != null">
+		and menu_no = #{menuNo}
+	</if>
+	<if test="menuNm != '' and menuNm != null">
+		and menu_nm like CONCAT('%', #{menuNm} ,'%')
+	</if>
+   </select>
 </mapper>

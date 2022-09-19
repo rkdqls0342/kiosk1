@@ -18,6 +18,29 @@
 	function showPopup(prdNo) {
 		alert(prdNo);
 	}
+	function checkValue(){
+		var cv=document.data;
+		if(!cv.menuNm.value){
+			alert("메뉴 명을 입력해주세요.");
+			cv.menuNm.focus();
+			return false;
+		}else if(!cv.menuPrc.value){
+			alert("단가를 입력해주세요.");
+			cv.menuPrc.focus();
+			return false;
+		}else if(!cv.menuStockQty.value){
+			alert("재고를 입력해주세요.");
+			cv.menuStockQty.focus();
+			return false;
+		}else{
+			btnSave();
+		}
+		
+	}
+	function btnSearch(){
+		event.preventDefault();
+		alert("검색하시겠습니까?");
+	}
 	function btnSave(){
 		event.preventDefault();
 		alert("저장하시겠습니까?");
@@ -103,13 +126,13 @@
 										data-toggle="modal" data-target="#largeModal">
 										<i class="zmdi zmdi-plus"></i>메뉴 추가
 									</button>
-									<button class="au-btn au-btn-icon au-btn--green au-btn--small">
+									<button id="btnSearch" class="au-btn au-btn-icon au-btn--green au-btn--small" onclick="btnSearch()">
 										<i class="fa  fa-search"></i>검색
 									</button>
 								</div>
 							</div>
 							<div class="table-responsive table-responsive-data2">
-								<table class="table table-data2">
+								<table id="tblMenu" class="table table-data2" >
 									<thead>
 										<tr>
 											<th>메뉴번호</th>
@@ -155,7 +178,7 @@
 						</div>
 						<div class="modal-body">
 							<div class="card-body card-block">
-								<form id="frmMenu" class="form-horizontal">
+								<form id="frmMenu" name=data class="form-horizontal" onsubmit="return checkValue()">
 									<div class="row form-group">
 										<div class="col col-md-3">
 											<label class=" form-control-label">메뉴번호</label>
@@ -230,7 +253,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">취소</button>
-							<button type="button" class="btn btn-primary" onclick="btnSave()">저장</button>
+							<button type="button" onclick="checkValue()" class="btn btn-primary">저장</button>
 						</div>
 					</div>
 				</div>
