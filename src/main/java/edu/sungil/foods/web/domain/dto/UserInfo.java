@@ -4,17 +4,12 @@ import lombok.Data;
 
 @Data
 public class UserInfo {
-	  Long userNo;
-	  String userNm;
-	  String userBirthDt;
+	  private Long userNo;
+	  private String userNm;
+	  private String userBirthDt;
 	  
 	  public String toString() {
 		  return "userNo = " + this.userNo + ", userNm = " + this.userNm +", userBirthDt = " + this.userBirthDt;
-		  
 	  }
-
-	public void setUserNo(Long userNo2) {
-		// TODO Auto-generated method stub
-		
-	}
+	  
 }
