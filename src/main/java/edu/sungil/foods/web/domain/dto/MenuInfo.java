@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class MenuInfo {
+	private long menuNo;
 	private String menuNm;
 	private long menuPrc;
 	private String menuDesc;

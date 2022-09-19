@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.sungil.foods.web.domain.AdminMapper;
 import edu.sungil.foods.web.domain.dto.MenuInfo;
+import edu.sungil.foods.web.domain.dto.SchMenuInfo;
 
 @Service
 public class AdminService {
@@ -35,4 +37,7 @@ public class AdminService {
 		adminMapper.insertMenu(menuInfo);
 	}
 	
+	public List<MenuInfo> getMenuList(SchMenuInfo schMenuInfo){
+		return adminMapper.selectMenuList(schMenuInfo);
+	}
 }
