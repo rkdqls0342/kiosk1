@@ -11,7 +11,7 @@ public class MenuInfo {
 	private long menuPrc;
 	private String menuDesc;
 	private long menuStockQty;
-	private String menuDispYn;
+	private String DispYn;
 	private MultipartFile menuImgNm;
 	private String fileNm;
 }

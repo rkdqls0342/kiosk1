@@ -65,8 +65,8 @@
 							<h3 class="title-5 m-b-35">메뉴목록</h3>
 							<div class="table-data__tool">
 								<div class="table-data__tool-left">
-									<input type="text" placeholder="메뉴번호" class="au-btn-filter">
-									<input type="text" placeholder="메뉴명" class="au-btn-filter">
+									<input id="schMenuNo" type="text" placeholder="메뉴번호" class="au-btn-filter">
+									<input id="schMenuNm" type="text" placeholder="메뉴명" class="au-btn-filter">
 								</div>
 								<div class="table-data__tool-right">
 									<button class="au-btn au-btn-icon au-btn--green au-btn--small"
@@ -82,13 +82,12 @@
 								<table id="tblMenu" class="table table-data2">
 									<thead>
 										<tr>
-											<th>메뉴번호</th>
-											<th>메뉴명</th>
-											<th>단가</th>
-											<th>메뉴설명</th>
-											<th>메뉴재고</th>
-											<th>전시여부</th>
-											<th></th>
+											<th data-field="menuNo">메뉴번호</th>
+											<th data-field="menuNm">메뉴명</th>
+											<th data-field="menuPrc">단가</th>
+											<th data-field="menuDesc">메뉴설명</th>
+											<th data-field="menuStockQty">메뉴재고</th>
+											<th data-field="DispYn">전시여부</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -211,6 +210,24 @@
 		</div>
 </body>
 <script type="text/javascript">
+
+	var menuData=[];
+	
+	$(document).ready(function(){
+		$('#tblMenu').bootstrapTable({
+			data : menuData
+		});
+		$('#tblMenu').bootstrapTable('load', menuData);
+		
+		$('#tblMenu').delegate("tr", "click", function(){
+			var tr = $(this);
+			var td = tr.children();
+			var menuNo = td.eq(0).text();
+			
+			alert(menuNo);
+		});
+	});
+
 	$("#btnSave").click(function(){
 		event.preventDefault();
 		menuAlert();
@@ -281,7 +298,26 @@
 	
 	$("#btnSearch").click(function(){
 		event.preventDefault();
-		alert("검색");
+		
+		$.ajax({
+			url : '/admin/menu',
+			method : 'GET',
+			data : {
+				menuNo : $("#schMenuNo").val(),
+				menuNm : $("#schMenuNm").val()
+			},
+			success : function(data){
+				if(data === ""){
+					alert("메뉴가 존재하지 않습니다.");
+				} else{
+					menuData = data;
+				}
+			},
+			complete : function(data){
+				$('#tblMenu').bootstrapTable('load', menuData);
+				console.log(data);
+			}
+		})
 	});
 </script>
 
