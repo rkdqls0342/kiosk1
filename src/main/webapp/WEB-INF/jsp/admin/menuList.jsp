@@ -14,59 +14,7 @@
 
 <!-- Title Page-->
 <title>관리페이지</title>
-<script type="text/javascript">
-	function showPopup(prdNo) {
-		alert(prdNo);
-	}
-	function checkValue(){
-		var cv=document.data;
-		if(!cv.menuNm.value){
-			alert("메뉴 명을 입력해주세요.");
-			cv.menuNm.focus();
-			return false;
-		}else if(!cv.menuPrc.value){
-			alert("단가를 입력해주세요.");
-			cv.menuPrc.focus();
-			return false;
-		}else if(!cv.menuStockQty.value){
-			alert("재고를 입력해주세요.");
-			cv.menuStockQty.focus();
-			return false;
-		}else{
-			btnSave();
-		}
-		
-	}
-	function btnSearch(){
-		event.preventDefault();
-		alert("검색하시겠습니까?");
-	}
-	function btnSave(){
-		event.preventDefault();
-		alert("저장하시겠습니까?");
-		var form = $('#frmMenu')[0];
-		var data = new FormData(form);
-		
-		$.ajax({
-			url : '/admin/menu/add',
-			data : data,
-			method : 'post',
-			enctype : 'multipart/form-data',
-			contentType : false,
-			processData : false,
-			
-			success : function(data){
-				alert("성공");
-			},
-			error : function(data){
-				alert("에러");
-			},
-			complete : function(data){
-				console.log(data.responseText);
-			}
-		})
-	}
-</script>
+
 
 </head>
 
@@ -118,15 +66,15 @@
 							<h3 class="title-5 m-b-35">메뉴목록</h3>
 							<div class="table-data__tool">
 								<div class="table-data__tool-left">
-									<input type="text" placeholder="메뉴번호" class="au-btn-filter">
-									<input type="text" placeholder="메뉴명" class="au-btn-filter">
+									<input id="schMenuNo" type="text" placeholder="메뉴번호" class="au-btn-filter">
+									<input id="schMenuNm" type="text" placeholder="메뉴명" class="au-btn-filter">
 								</div>
 								<div class="table-data__tool-right">
 									<button class="au-btn au-btn-icon au-btn--green au-btn--small"
 										data-toggle="modal" data-target="#largeModal">
 										<i class="zmdi zmdi-plus"></i>메뉴 추가
 									</button>
-									<button id="btnSearch" class="au-btn au-btn-icon au-btn--green au-btn--small" onclick="btnSearch()">
+									<button id="btnSearch" class="au-btn au-btn-icon au-btn--green au-btn--small" onsubmit="btnSearch()">
 										<i class="fa  fa-search"></i>검색
 									</button>
 								</div>
@@ -135,13 +83,12 @@
 								<table id="tblMenu" class="table table-data2" >
 									<thead>
 										<tr>
-											<th>메뉴번호</th>
-											<th>메뉴명</th>
-											<th>단가</th>
-											<th>메뉴설명</th>
-											<th>메뉴재고</th>
-											<th>전시여부</th>
-											<th></th>
+											<th data-field="menuNo">메뉴번호</th>
+											<th data-field="menuNm">메뉴명</th>
+											<th data-field="menuPrc">단가</th>
+											<th data-field="menuDesc">메뉴설명</th>
+											<th data-field="menuStockQty">메뉴재고</th>
+											<th data-field="menuDispYn">전시여부</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -263,4 +210,102 @@
 			<%@ include file="/WEB-INF/jsp/admin/include/footer.jsp"%>
 		</div>
 </body> 
+<script type="text/javascript">
+
+	var menuData = [];
+	
+	$(document).ready(function(){
+		$('#tblMenu').bootstrapTable({
+			data : menuData
+		});
+		$('#tblMenu').bootstrapTable('load',menuData);
+		
+		$('#tblMenu').delegate("tr","click",function(){
+			var tr = $(this);
+			var td = tr.children();
+			var menuNo = td.eq(0).text();
+			var menuNm = td.eq(1).text();
+			var menuPrc = td.eq(2).text();
+			var menuDesc = td.eq(3).text();
+			var menuStockQty = td.eq(4).text();
+			var menuDispYn = td.eq(5).text();
+			alert(menuNo+" "+menuNm+" "+menuPrc+" "+menuDesc+" "+menuStockQty+" "+menuDispYn);
+		})
+		
+	});
+	
+	function showPopup(prdNo) {
+		alert(prdNo);
+	}
+	function checkValue(){
+		var cv=document.data;
+		if(!cv.menuNm.value){
+			alert("메뉴 명을 입력해주세요.");
+			cv.menuNm.focus();
+			return false;
+		}else if(!cv.menuPrc.value){
+			alert("단가를 입력해주세요.");
+			cv.menuPrc.focus();
+			return false;
+		}else if(!cv.menuStockQty.value){
+			alert("재고를 입력해주세요.");
+			cv.menuStockQty.focus();
+			return false;
+		}else{
+			btnSave();
+		}
+		
+	}
+	$("#btnSearch").click(function(){
+		event.preventDefault();
+		alert("검색하시겠습니까?");
+		
+		$.ajax({
+			url : '/admin/menu',
+			method : 'GET',
+			data : {
+				menuNo : $('#schMenuNo').val(),
+				menuNm : $('#schMenuNm').val()
+			},
+		
+		success : function(data){
+			if(data ==="")
+			{
+				alert("메뉴가 존재하지 않습니다.");
+			}else{
+				menuData = data;
+			}
+		},
+		complete  : function(data){
+			console.log(data);
+			$('#tblMenu').bootstrapTable('load',menuData);
+		}
+		});
+	});
+	function btnSave(){
+		event.preventDefault();
+		alert("저장하시겠습니까?");
+		var form = $('#frmMenu')[0];
+		var data = new FormData(form);
+		
+		$.ajax({
+			url : '/admin/menu/add',
+			data : data,
+			method : 'post',
+			enctype : 'multipart/form-data',
+			contentType : false,
+			processData : false,
+			
+			success : function(data){
+				alert("성공");
+			},
+			error : function(data){
+				alert("에러");
+			},
+			complete : function(data){
+				console.log(data.responseText);
+			}
+		})
+	}
+</script>
 </html>
