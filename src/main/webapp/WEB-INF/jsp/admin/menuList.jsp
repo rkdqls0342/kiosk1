@@ -130,7 +130,8 @@
 											<label class=" form-control-label">메뉴번호</label>
 										</div>
 										<div class="col-12 col-md-9">
-											<p class="form-control-static" id="menuNm" name="menuNm">1</p>
+											<input type="number" id="menuNo" name="menuNo" placeholder="메뉴번호"
+												class="form-control" readonly>
 										</div>
 									</div>
 									<div class="row form-group">
@@ -213,20 +214,6 @@
 
 	var menuData=[];
 	
-	$(document).ready(function(){
-		$('#tblMenu').bootstrapTable({
-			data : menuData
-		});
-		$('#tblMenu').bootstrapTable('load', menuData);
-		
-		$('#tblMenu').delegate("tr", "click", function(){
-			var tr = $(this);
-			var td = tr.children();
-			var menuNo = td.eq(0).text();
-			
-			alert(menuNo);
-		});
-	});
 
 	$("#btnSave").click(function(){
 		event.preventDefault();
@@ -288,13 +275,52 @@
 			return false;
 		}
 		
-		if(!data.menuImgNm.value){
+		/* if(!data.menuImgNm.value){
 			alert("이미지를 선택해주세요.");
 			data.menuImgNm.focus();
 			return false;
-		}
+		} */
 		return true;
 	}
+	
+	$(document).ready(function(){
+		$('#tblMenu').bootstrapTable({
+			data : menuData
+		});
+		$('#tblMenu').bootstrapTable('load', menuData);
+		
+		$('#tblMenu').delegate("tr", "click", function(){
+			var tr = $(this);
+			var td = tr.children();
+			var menuNo = td.eq(0).text();
+			var pUrl = '/admin/menu/' + menuNo; 
+			
+			$.ajax({
+				url : pUrl,
+				method : 'GET',
+				dataType : 'json',
+				success : function(data){
+					console.log(data)
+					alert("성공");
+					$('#menuNo').val(data.menuNo);
+					$('#menuNm').val(data.menuNm);
+					$('#menuPrc').val(data.menuPrc);
+					$('#menuDesc').val(data.menuDesc);
+					$('#menuStockQty').val(data.menuStockQty);
+					/* $('#menuDispYn').val(data.menuDispYn); */
+					$(":radio[name='menuDispYn'][value=" +data.DispYn+"]").attr('checked', true);
+					$('#largeModal').modal('toggle'); //bootstrap 라이브러리 켜져있으면 꺼주고 꺼져있으면 켜줌
+					
+				},
+				error : function(data){
+					alert("에러");
+				}
+				
+				
+				
+			})
+		});
+	});
 	
 	$("#btnSearch").click(function(){
 		event.preventDefault();

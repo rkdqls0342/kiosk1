@@ -22,6 +22,17 @@ public class AdminService {
 	AdminMapper adminMapper;
 	
 	public void addMenu(MenuInfo menuInfo) {
+		
+		if(menuInfo.getMenuNo() != null) {
+			//수정
+			adminMapper.updateMenu(menuInfo);
+		} else {
+			//신규등록
+			addNewMenu(menuInfo);
+		}
+	}
+	
+	private void addNewMenu(MenuInfo menuInfo) {
 		String fileNm = "";
 		if(!(menuInfo.getMenuImgNm() == null)) {
 			fileNm = String.valueOf(System.currentTimeMillis()) + '_' + 
@@ -32,12 +43,17 @@ public class AdminService {
 				e.printStackTrace();
 			}
 		}
-		
 		menuInfo.setFileNm(fileNm);
 		adminMapper.insertMenu(menuInfo);
 	}
 	
 	public List<MenuInfo> getMenuList(SchMenuInfo schMenuInfo){
 		return adminMapper.selectMenuList(schMenuInfo);
+	}
+
+	public MenuInfo getMenu(Long menuNo) {
+		SchMenuInfo schMenuInfo = new SchMenuInfo();
+		schMenuInfo.setMenuNo(menuNo);
+		return adminMapper.selectMenuList(schMenuInfo).get(0);
 	}
 }

@@ -57,97 +57,31 @@
 
        
 
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="../static/media/1.PNG" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  춘천 국물 닭갈비 떡뽁이
-                </h4>
-                <h5>2,000원</h5>
-                <p class="card-text">닭갈비와 떡볶이의 오묘한 조화</p>
-              </div>
-              <div class="card-footer" >
-                <div class="qty" style="display:inline;">
-                        <span class="minus bg-dark">-</span>
-                        <input type="number" class="count" name="qty1" value="1">
-                        <span class="plus bg-dark">+</span>
-                    </div>
-                    <div style="display:inline; padding-top:0px">
-                    <button type="button" class="btn btn-warning" style="margin-left:15px; padding:3px 15px 3px 15px"><i class="fa fa-cutlery"></i> 주문</button>
-                    </div>
-              </div>
-            </div>
-          </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="../static/media/1.PNG" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  춘천 국물 닭갈비 떡뽁이
-                </h4>
-                <h5>2,000원</h5>
-                <p class="card-text">닭갈비와 떡볶이의 오묘한 조화</p>
-              </div>
-              <div class="card-footer" >
-                <div class="qty" style="display:inline;">
-                        <span class="minus bg-dark">-</span>
-                        <input type="number" class="count" name="qty" value="1">
-                        <span class="plus bg-dark">+</span>
-                    </div>
-                    <div style="display:inline; padding-top:0px">
-                    <button type="button" class="btn btn-warning" style="margin-left:15px; padding:3px 15px 3px 15px"><i class="fa fa-cutlery"></i> 주문</button>
-                    </div>
-              </div>
-            </div>
-          </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="../static/media/1.PNG" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  춘천 국물 닭갈비 떡뽁이
-                </h4>
-                <h5>2,000원</h5>
-                <p class="card-text">닭갈비와 떡볶이의 오묘한 조화</p>
-              </div>
-              <div class="card-footer" >
-                <div class="qty" style="display:inline;">
-                        <span class="minus bg-dark">-</span>
-                        <input type="number" class="count" name="qty" value="1">
-                        <span class="plus bg-dark">+</span>
-                    </div>
-                    <div style="display:inline; padding-top:0px">
-                    <button type="button" class="btn btn-warning" style="margin-left:15px; padding:3px 15px 3px 15px"><i class="fa fa-cutlery"></i> 주문</button>
-                    </div>
-              </div>
-            </div>
-          </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="../static/media/1.PNG" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  춘천 국물 닭갈비 떡뽁이
-                </h4>
-                <h5>2,000원</h5>
-                <p class="card-text">닭갈비와 떡볶이의 오묘한 조화</p>
-              </div>
-              <div class="card-footer" >
-                <div class="qty" style="display:inline;">
-                        <span class="minus bg-dark">-</span>
-                        <input type="number" class="count" name="qty" value="1">
-                        <span class="plus bg-dark">+</span>
-                    </div>
-                    <div style="display:inline; padding-top:0px">
-                    <button type="button" class="btn btn-warning" style="margin-left:15px; padding:3px 15px 3px 15px"><i class="fa fa-cutlery"></i> 주문</button>
-                    </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id='menuList' class="row">
+        <template id="menu=menuCard">
+	        <div class="col-lg-4 col-md-6 mb-4">
+	           	<div class="card h-100">
+	              	<a href="#"><img class="card-img-top" src="../static/media/1.PNG" alt=""></a>
+	              	<div class="card-body">
+		                <h4 class="card-title">
+		                  춘천 국물 닭갈비 떡뽁이
+		                </h4>
+		                <h5>2,000원</h5>
+		                <p class="card-text">닭갈비와 떡볶이의 오묘한 조화</p>
+	              	</div>
+		            <div class="card-footer" >
+		              	<div class="qty" style="display:inline;">
+	                        <span class="minus bg-dark">-</span>
+	                        <input type="number" class="count" name="qty" value="1">
+	                        <span class="plus bg-dark">+</span>
+	                    </div>
+	                    <div style="display:inline; padding-top:0px">
+	                      	<button type="button" class="btn btn-warning" style="margin-left:15px; padding:3px 15px 3px 15px"><i class="fa fa-cutlery"></i> 주문</button>
+	                    </div>
+                	</div>
+              	</div>
+         	</div>
+         </template>
         <!-- /.row -->
 
       </div>
@@ -158,7 +92,7 @@
 
   </div>
   <!-- /.container -->
-
+</div>
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
@@ -170,5 +104,28 @@
 
 
 </body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		getMenuList();
+		
+	});
+	
+	getMenuList = function(){
+		$.ajax({
+			
+			url : 'admin/menu',
+			method : 'GET',
+			success : function(data){
+				alert('성공');
+			},
+			error : function(data){
+				alert('실패');
+			}
+		});
+		
+	}
+
+
+</script>
 
 </html>

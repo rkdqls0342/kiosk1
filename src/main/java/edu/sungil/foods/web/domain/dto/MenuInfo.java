@@ -6,12 +6,12 @@ import lombok.Data;
 
 @Data
 public class MenuInfo {
-	private long menuNo;
+	private Long menuNo;
 	private String menuNm;
 	private long menuPrc;
 	private String menuDesc;
 	private long menuStockQty;
-	private String DispYn;
+	private String menuDispYn;
 	private MultipartFile menuImgNm;
 	private String fileNm;
 }
