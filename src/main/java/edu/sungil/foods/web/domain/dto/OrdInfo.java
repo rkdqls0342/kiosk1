@@ -10,5 +10,6 @@ public class OrdInfo {
 	private String menuNm;
 	private int ordQty;
 	private int ordAmt;
+	private int MenuPrc;
 	private String ordStat;
 }

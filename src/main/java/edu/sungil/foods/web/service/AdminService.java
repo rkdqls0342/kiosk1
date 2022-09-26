@@ -60,7 +60,7 @@ public class AdminService {
 
 	public void addOrd(OrdInfo ordInfo) {
 		
-		
+		ordInfo.setOrdAmt(ordInfo.getOrdQty()*ordInfo.getMenuPrc());
 		adminMapper.insertOrd(ordInfo);
 	}
 }
