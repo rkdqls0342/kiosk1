@@ -31,7 +31,7 @@
             <div class="section__content section__content--p35">
                 <div class="header3-wrap">
                     <div class="header__logo">
-                        <a href="#">
+                        <a href="http://localhost:8081/">
                             <img src="../static/images/icon/logo-white.png" alt="CoolAdmin" />
                         </a>
                     </div>

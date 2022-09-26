@@ -79,7 +79,7 @@
 								</div>
 							</div>
 							<div class="table-responsive table-responsive-data2">
-								<table id="tblMenu" class="table table-data2">
+								<table id="tblMenu" class="table table-data2">	
 									<thead>
 										<tr>
 											<th data-field="menuNo">메뉴번호</th>
@@ -87,7 +87,7 @@
 											<th data-field="menuPrc">단가</th>
 											<th data-field="menuDesc">메뉴설명</th>
 											<th data-field="menuStockQty">메뉴재고</th>
-											<th data-field="DispYn">전시여부</th>
+											<th data-field="menuDispYn">전시여부</th>
 										</tr>
 									</thead>
 									<tbody>

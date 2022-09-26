@@ -10,7 +10,7 @@
 			menu_prc,
 			menu_desc,
 			menu_stock_qty,
-			disp_yn,
+			menu_disp_yn,
 			menu_img_nm)
 			VALUES
 			(
@@ -32,7 +32,7 @@
 			MENU_PRC,
 			MENU_DESC,
 			MENU_STOCK_QTY,
-			DISP_YN AS menu_Disp_Yn,
+			MENU_DISP_YN AS menu_Disp_Yn,
 			MENU_IMG_NM AS FILE_NM
 		FROM TB_MENU 
 		WHERE 1=1
@@ -51,9 +51,28 @@
 				MENU_PRC=#{menuPrc},
 				MENU_DESC=#{menuDesc},
 				MENU_STOCK_QTY=#{menuStockQty},
-				DISP_YN = #{menuDispYn}
+				MENU_DISP_YN=#{menuDispYn}
 			WHERE
 				MENU_NO = #{menuNo}
 	</update>
+	<insert id="insertOrd" parameterType="edu.sungil.foods.web.domain.dto.OrdInfo">
+	INSERT INTO tb_ord( 
+			ord_dt,
+			menu_no,
+			menu_nm,
+			ord_qty,
+			ord_amt,
+			ord_stat)
+			VALUES
+			(
+				NOW(),
+				#{menuNo},
+				#{menuNm},
+				#{ordQty},
+				#{ordAmt},
+				'10'
+			)
+	
+	</insert>
    
 </mapper>
