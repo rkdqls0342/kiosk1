@@ -41,6 +41,17 @@ public class AdminController {
 	public void menuList() {
 	}
 	
+	@RequestMapping(value="/status", method=RequestMethod.POST)
+	@ResponseBody
+	public void updateOrd(OrdInfo ordInfo) {
+		try {
+			adminService.updateOrd(ordInfo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	@RequestMapping(value="/menu/add", method=RequestMethod.POST)
 	@ResponseBody
 	public void addMenu(MenuInfo menuInfo) {

@@ -20,5 +20,7 @@ public interface AdminMapper {
 	void insertOrd(OrdInfo ordInfo);
 
 	List<OrdInfo> selectOrdList(SchOrdInfo schOrdInfo);
+
+	void updateOrd(OrdInfo ordInfo);
 	
 }

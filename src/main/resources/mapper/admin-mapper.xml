@@ -55,6 +55,13 @@
 			WHERE
 				MENU_NO = #{menuNo}
 	</update>
+	<update id="updateOrd" parameterType="edu.sungil.foods.web.domain.dto.OrdInfo">
+	UPDATE TB_ORD 
+			SET 
+				ord_stat= '20'
+			WHERE
+				ord_no = #{ordNo}
+	</update>
 	<insert id="insertOrd" parameterType="edu.sungil.foods.web.domain.dto.OrdInfo">
 	INSERT INTO tb_ord( 
 			ord_dt,
@@ -83,7 +90,7 @@
    			   menu_nm,
    			   ord_qty,
    			   ord_amt,
-   			   ord_stat
+   			   if(ord_stat = '10','접수','완료') ord_stat 
    		from tb_ord
  		where 1=1
  			<if test="ordNo !='' and ordNo!=null">

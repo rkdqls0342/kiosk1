@@ -34,6 +34,11 @@ public class AdminService {
 		}
 	}
 	
+	public void updateOrd(OrdInfo ordInfo) {
+		adminMapper.updateOrd(ordInfo);
+	}
+	
+	
 	private void addNewMenu(MenuInfo menuInfo) {
 		String fileNm = "";
 		if(!(menuInfo.getMenuImgNm() == null)) {
